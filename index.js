@@ -11,7 +11,7 @@ require("dotenv").config()
 
 // import bodyParser from 'body-parser'
 
-const  routes = require('./src/routes/books.route')
+const  routes = require('./src/routes/slangs.route')
 
 const  initDB =  require('./src/config/mongo-db.config')
 

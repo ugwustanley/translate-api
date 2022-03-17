@@ -1,11 +1,11 @@
-const Book = require('../models/mongoose.model')
+const Slang = require('../models/mongoose.model')
 
 const mongoose = require("mongoose");
 
 // add this inside your route
 
-const _addBook = async (book) =>{
-    console.log(book, "service")
+const _addSlang = async (slang) =>{
+    console.log(slang, "service")
     const  bookDB = await Book.find({
            id:  book.id
         })
@@ -85,7 +85,7 @@ const _deleteBook = async (id) =>{
     
 }
 
-module.exports = { _addBook, _getBook, _getBooks, _deleteBook }
+module.exports = { _addSlang, _getSlang, _getBooks, _deleteBook }
 
 
 

@@ -1,11 +1,11 @@
 
 
 const  {
-  _getBooks,
-  _getBook,
-  _addBook,
-  _deleteBook,
-}  = require("../services/books.service")
+  _getSlangs,
+  _getSlang,
+  _addSlang,
+  _deleteSlang,
+}  = require("../services/slangs.service")
 
 
 /**
@@ -13,19 +13,19 @@ const  {
  * @param req
  * @param res
  */
-async function getBooks(req, res) {
+async function getSlangs(req, res) {
 
-  const books = await _getBooks();
+  const slangs = await _getSlangs();
 
-  if (!books) {
+  if (!slangs) {
     res.status(404).send("no books found");
   }
 
-  if (books) {
+  if (slangs) {
     res.status(200).send({
       success: true,
       message: "Books fetch successful",
-      data: books,
+      data: slangs,
     });
   }
 }
@@ -36,14 +36,14 @@ async function getBooks(req, res) {
  * @param req
  * @param res
  */
-async function getBook(req, res) {
+async function getSlang(req, res) {
 
-    const book_id = req.query.id;
-    console.log(book_id , 'book id')
+    const slang_id = req.query.id;
+    console.log(slang_id , 'book id')
 
-    const book = await _getBook(book_id);
+    const slang = await _getSlang(slang_id);
   
-    if (!book) {
+    if (!Slang) {
       res.status(404).send(`The book with the id ${book_id} was not found`);
     }
   

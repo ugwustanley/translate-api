@@ -15,7 +15,7 @@ function initializeMongodb() {
         console.log('Mongoose default connection open to ' + dbURI);
     }); 
     
-    // error check
+    // error check again
     mongoose.connection.on('error',function (err) {  
         console.log('Mongoose default connection error: ' + err);
     });
