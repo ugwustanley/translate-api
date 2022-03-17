@@ -3,6 +3,7 @@
 const  {
 
   _addSlang,
+  _addSlangs,
  
 }  = require("../services/slangs.service")
 
@@ -79,11 +80,43 @@ const  {
 
       res.status(200).send({
         success: true,
-        message: "Slang added successful",
+        message: "Slang added successfully",
         data: response,
       });
 
     }
+}
+
+
+
+/**
+ *
+ * @param req
+ * @param res
+ */
+ async function addSlangs(req, res) {
+
+  const slangsArray = req.body;
+
+  console.log(slangsArray, 'this is the slang object')
+
+  const response = await _addSlangs(slangsArray);
+
+  console.log(response , 'res')
+
+  if (!response) {
+    res.status(404).send(`There was an error while adding slang`);
+  }
+
+  if (response) {
+
+    res.status(200).send({
+      success: true,
+      message: "Slangs added successfully",
+      data: response,
+    });
+
+  }
 }
 
 
@@ -113,4 +146,4 @@ const  {
 
 //module.exports = { addBook, getBooks, getBook, deleteBook }
 
-module.exports = { addSlang }
+module.exports = { addSlang , addSlangs };
