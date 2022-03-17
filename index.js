@@ -35,9 +35,9 @@ app.get('/' , (req, res) => {
 
 app.use("/v1", routes)
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3003
 
-app.listen( process.env.PORT || 8080 , () =>{
+app.listen( PORT , () =>{
     console.log(`port running at ${PORT}`)
     initDB()
 })

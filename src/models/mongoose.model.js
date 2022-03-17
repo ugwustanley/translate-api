@@ -1,31 +1,22 @@
 
 const mongoose = require('mongoose')
 
-const bookSchema = new mongoose.Schema({
-   name: {
+const slangSchema = new mongoose.Schema({
+   abbr: {
        type: String,
        required: true,
        trim: true
    },
-   id: {
-       type: String,
-       required: true,
-       trim: true
-   },
-   genre: {
+   full: {
        type: String,
        required: true,
    },
-   isbn: {
-       type: String,
-       required: true,
-   }
 }, {
    timestamps: true
 });
 
 
 
-const book = mongoose.model("Book", bookSchema);
+const slang = mongoose.model("Slang", slangSchema);
 
-module.exports  = book
+module.exports  = slang

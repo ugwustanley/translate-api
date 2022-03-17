@@ -4,28 +4,32 @@ const mongoose = require("mongoose");
 
 // add this inside your route
 
-const _addSlang = async (slang) =>{
-    console.log(slang, "service")
-    const  bookDB = await Book.find({
-           id:  book.id
-        })
-    console.log(bookDB, "bookDB")
+const _addSlang = async ( slang ) =>{
 
-    if(bookDB.length > 0){
-        console.log("book already exist")
+
+    console.log(slang, "slang value from service")
+    const  slangDB = await Slang.find({
+           name:  slang.abbr
+        })
+
+    console.log(slangDB, "SlangDB")
+
+    if(slangDB.length > 0){
+
+        console.log("slang already exist")
         return
     }
 
-    const newBook  = new Book(book)
+    const newSlang = new Slang( slang )
 
-    newBook.save(function (err) {
+    newSlang.save(function (err) {
         if (err) {
-            console.log(err)
+            console.log(err, "error while creating slang on service")
             return
         };
       })
     
-     return book; 
+     return slang; 
 }
 
 
@@ -33,59 +37,61 @@ const _addSlang = async (slang) =>{
 
 
 
- const _getBook = async (id) =>{
-    console.log(id, "id")
-    const book = await Book.find({  id  })
+//  const _getBook = async (id) =>{
+//     console.log(id, "id")
+//     const book = await Book.find({  id  })
 
-    if(!book) return
+//     if(!book) return
     
-    if(book.length == 0){
-        console.log("no book found")
-        return 
-    }
+//     if(book.length == 0){
+//         console.log("no book found")
+//         return 
+//     }
 
-    if(book){
-        console.log(book , "book")
-        return book
-    }
+//     if(book){
+//         console.log(book , "book")
+//         return book
+//     }
     
-}
+// }
 
-const _getBooks = async () =>{
+// const _getBooks = async () =>{
     
-    const book = await Book.find({  })
+//     const book = await Book.find({  })
 
-    if(book){
-        return book
-    }
+//     if(book){
+//         return book
+//     }
 
-    return false
+//     return false
     
-}
+// }
     
 
-const _deleteBook = async (id) =>{
+// const _deleteBook = async (id) =>{
 
-    console.log("reached delete service", id)
+//     console.log("reached delete service", id)
 
-    const book = await Book.find({  id  })
+//     const book = await Book.find({  id  })
 
-    console.log(book, "book from delete")
-    if(book.length == 0) return
+//     console.log(book, "book from delete")
+//     if(book.length == 0) return
 
-    const response = await Book.deleteOne({  id : id })
+//     const response = await Book.deleteOne({  id : id })
 
-    console.log(response, "response")
+//     console.log(response, "response")
 
-    if(!response) return
+//     if(!response) return
 
-    if(response){
-        return true
-    }
+//     if(response){
+//         return true
+//     }
     
-}
+// }
 
-module.exports = { _addSlang, _getSlang, _getBooks, _deleteBook }
+//module.exports = { _addSlang, _getSlang, _getBooks, _deleteBook }
+
+module.exports = {_addSlang}
 
 
 
