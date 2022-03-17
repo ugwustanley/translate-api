@@ -23,10 +23,12 @@ const _addSlang = async ( slang ) =>{
     const newSlang = new Slang( slang )
 
     newSlang.save(function (err) {
+
         if (err) {
             console.log(err, "error while creating slang on service")
             return
         };
+
       })
     
      return slang; 
@@ -75,23 +77,44 @@ const _addSlangs = async ( slangs ) =>{
 
 
 
-//  const _getBook = async (id) =>{
-//     console.log(id, "id")
-//     const book = await Book.find({  id  })
+ const _getSlang = async (abbr) =>{
 
-//     if(!book) return
-    
-//     if(book.length == 0){
-//         console.log("no book found")
-//         return 
-//     }
+    const slang = await Slang.find({ abbr: abbr   })
 
-//     if(book){
-//         console.log(book , "book")
-//         return book
-//     }
+    if(!slang) return
     
-// }
+    if(slang.length == 0){
+        //console.log("no slang found")
+        return 
+    }
+
+    if(slang){
+        //console.log(slang , "slang")
+        return slang
+    }
+    
+}
+
+
+
+const _getSlangs = async () =>{
+
+    const slang = await Slang.find({  })
+
+    if(!slang) return
+    
+    if(slang.length == 0){
+
+      //  console.log("no slang found")
+        return 
+    }
+
+    if(slang){
+       // console.log(slang , "slang")
+        return slang
+    }
+    
+}
 
 // const _getBooks = async () =>{
     
@@ -129,7 +152,7 @@ const _addSlangs = async ( slangs ) =>{
 
 //module.exports = { _addSlang, _getSlang, _getBooks, _deleteBook }
 
-module.exports = {_addSlang , _addSlangs}
+module.exports = {_addSlang , _addSlangs, _getSlang, _getSlangs}
 
 
 

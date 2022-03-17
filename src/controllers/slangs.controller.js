@@ -3,7 +3,9 @@
 const  {
 
   _addSlang,
+  _getSlangs,
   _addSlangs,
+  _getSlang,
  
 }  = require("../services/slangs.service")
 
@@ -31,30 +33,61 @@ const  {
 // }
 
 
-// /**
-//  *
-//  * @param req
-//  * @param res
-//  */
-// async function getSlang(req, res) {
+/**
+ *
+ * @param req
+ * @param res
+ */
+async function getSlang(req, res) {
 
-//     const slang_id = req.query.id;
-//     console.log(slang_id , 'book id')
+    const{ abbr} = req.query;
 
-//     const slang = await _getSlang(slang_id);
+    //console.log(abbr , 'slang id')
+
+    const slang = await _getSlang(abbr);
   
-//     if (!Slang) {
-//       res.status(404).send(`The book with the id ${book_id} was not found`);
-//     }
+    if (!slang) {
+
+      res.status(404).send(`The slang ${abbr} was not found`);
+    }
   
-//     if (book) {
-//       res.status(200).send({
-//         success: true,
-//         message: "Book fetch successful",
-//         data: book,
-//       });
-//     }
-// }
+    if (slang) {
+
+      res.status(200).send({
+        success: true,
+        message: "slang fetch successful",
+        data: slang,
+      });
+
+    }
+}
+
+
+/**
+ *
+ * @param req
+ * @param res
+ */
+ async function getSlangs(req, res) {
+
+
+  const slang = await _getSlangs();
+
+  if (!slang) {
+
+    res.status(404).send(`slangs not found`);
+  }
+
+  if (slang) {
+
+    res.status(200).send({
+      success: true,
+      message: "slang fetch successful",
+      data: slang,
+    });
+
+  }
+}
 
 
 /**
@@ -146,4 +179,4 @@ const  {
 
 //module.exports = { addBook, getBooks, getBook, deleteBook }
 
-module.exports = { addSlang , addSlangs };
+module.exports = { addSlang , addSlangs , getSlang , getSlangs };
