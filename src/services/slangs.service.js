@@ -8,6 +8,7 @@ const _addSlang = async ( slang ) =>{
 
 
     console.log(slang, "slang value from service")
+
     const  slangDB = await Slang.find({
            abbr:  slang.abbr
         })
@@ -40,7 +41,7 @@ const _addSlangs = async ( slangs ) =>{
 
     console.log("slangs value from service")
 
-    slangs.forEach(async function(slang){
+    slangs?.forEach(async function(slang){
         
         const  slangDB = await Slang.find({
             abbr:  slang.abbr
@@ -116,43 +117,33 @@ const _getSlangs = async () =>{
     
 }
 
-// const _getBooks = async () =>{
-    
-//     const book = await Book.find({  })
-
-//     if(book){
-//         return book
-//     }
-
-//     return false
-    
-// }
     
 
-// const _deleteBook = async (id) =>{
+const _deleteSlang= async (abbr) =>{
 
-//     console.log("reached delete service", id)
+    console.log("reached delete service", abbr)
 
-//     const book = await Book.find({  id  })
+    const slang = await Slang.find({  abbr  })
 
-//     console.log(book, "book from delete")
-//     if(book.length == 0) return
+    console.log(slang, "book from delete")
 
-//     const response = await Book.deleteOne({  id : id })
+    if(slang.length == 0) return
 
-//     console.log(response, "response")
+    const response = await Slang.deleteOne({  abbr })
 
-//     if(!response) return
+    console.log(response, "response")
 
-//     if(response){
-//         return true
-//     }
+    if(!response) return
+
+    if(response){
+        return true
+    }
     
-// }
+}
 
 //module.exports = { _addSlang, _getSlang, _getBooks, _deleteBook }
 
-module.exports = {_addSlang , _addSlangs, _getSlang, _getSlangs}
+module.exports = {_addSlang , _addSlangs, _getSlang, _getSlangs , _deleteSlang}
 
 
 

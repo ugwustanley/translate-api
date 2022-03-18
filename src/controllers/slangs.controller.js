@@ -6,6 +6,7 @@ const  {
   _getSlangs,
   _addSlangs,
   _getSlang,
+  _deleteSlang
  
 }  = require("../services/slangs.service")
 
@@ -153,30 +154,29 @@ async function getSlang(req, res) {
 }
 
 
-// /**
-//  *
-//  * @param req
-//  * @param res
-//  */
-//  async function deleteBook(req, res) {
+/**
+ *
+ * @param req
+ * @param res
+ */
+ async function deleteSlang(req, res) {
 
-//     const { id } = req.body;
+    const { abbr } = req.body;
 
-//     const response = await _deleteBook(id);
+    const response = await _deleteSlang(abbr);
   
-//     if (!response) {
-//       res.status(404).send(`Book with id ${id} could not be deleted`);
-//     }
+    if (!response) {
+      res.status(404).send(`${abbr} could not be deleted`);
+    }
   
-//     if (response) {
-//       res.status(200).send({
-//         success: true,
-//         message: "Book delete successful",
-//         data: req.body,
-//       });
-//     }
-// }
+    if (response) {
+      res.status(200).send({
+        success: true,
+        message: "slang delete successful",
+        data: abbr,
+      });
+    }
+}
 
-//module.exports = { addBook, getBooks, getBook, deleteBook }
 
-module.exports = { addSlang , addSlangs , getSlang , getSlangs };
+module.exports = { addSlang , addSlangs , getSlang , getSlangs , deleteSlang };

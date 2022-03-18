@@ -2,7 +2,7 @@ const express = require("express")
 
 // const { getSlangs, getSlang, addSlang, addSlangs ,  deleteSlang } = require("../controllers/slangs.controller")
 
-const {  addSlang , addSlangs , getSlang , getSlangs } = require("../controllers/slangs.controller")
+const {  addSlang , addSlangs , getSlang , getSlangs , deleteSlang } = require("../controllers/slangs.controller")
 
 const route = express.Router()
 
@@ -16,7 +16,7 @@ route.post('/slang' , addSlang)
 
 route.post("/slangs", addSlangs)
 
-// route.delete("/delete_slang:id", deleteSlang)
+route.delete("/slang", deleteSlang)
 
 
 
